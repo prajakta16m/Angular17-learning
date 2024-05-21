@@ -9,12 +9,25 @@ import { Component } from "@angular/core"
     template: `
         <p>Title: {{taskTitle}}</p>
         <button [disabled]='disableSubmit'>Submit</button>
+
+        @if(disableSubmit) {
+            <p>Submit is disabled.</p>
+        }
+
+        @for(essential of angularEssentials; track essential) {
+            <p>{{essential}}</p>
+        }
     `
 })
  export class TodoListItem{
     taskTitle = 'Dynamic content property';
     isComplete = false;
     disableSubmit = true;
+
+    angularEssentials = [
+        'Components', 'Managing dynamic data', 'Conditionals & Loops',
+        'Handling user interaction', 'sharing logic'
+    ];
 
     updateTaskTitle(newTitle: string) {
         this.taskTitle = newTitle;
