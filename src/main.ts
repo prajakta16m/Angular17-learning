@@ -14,6 +14,8 @@ import 'zone.js';
 })
 export class App {
   name = 'Angular';
+  static appName = 'Angular17';
 }
 
 bootstrapApplication(App);
+console.log(App.appName);
