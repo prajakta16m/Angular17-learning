@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import 'zone.js';
 import { TodoListItem } from './todo-list-item.component';
@@ -12,13 +12,23 @@ import { TodoListItem } from './todo-list-item.component';
     <a target="_blank" href="https://angular.dev/overview">
       Learn more about Angular
     </a>
-    <app-todo-list-item></app-todo-list-item>
+    <h2>{{cartCount()}}</h2>
+    <app-todo-list-item [cartCount]="cartCount" (signalUpdate)="signalUpdate1($event)"></app-todo-list-item>
   `,
 })
 export class App {
   name = 'Angular';
   static appName = 'Angular17';
+
+  cartCount = signal(1);
+
+  signalUpdate1(val: number){
+    //alert("here");
+    this.cartCount.set(val);
+  }
 }
 
 bootstrapApplication(App);
 console.log(App.appName);
+
+
